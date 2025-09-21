@@ -238,15 +238,11 @@
       </div>
     </aside>
   </main>
-  <!-- Contact Section -->
-<section class="contact-card" aria-labelledby="contact-title">
-  <div class="blob" aria-hidden="true"></div>
-  <div class="bubble b1" aria-hidden="true"></div>
-  <div class="bubble b2" aria-hidden="true"></div>
+<!-- Contact Section (Below Hero) -->
+<section class="contact-section" aria-labelledby="contact-title">
   <h2 id="contact-title">Get in Touch</h2>
-  <p style="color:var(--muted); margin-bottom:24px; max-width:600px;">
-    Have questions or suggestions? Reach out to us and we'll get back to you promptly!
-  </p>
+  <p>Have questions or suggestions? Reach out and we'll get back to you promptly!</p>
+
   <form id="contactForm" novalidate>
     <div class="form-group">
       <input type="text" id="name" name="name" required placeholder=" " />
@@ -266,44 +262,50 @@
 </section>
 
 <style>
-.contact-card {
-  position: relative;
-  margin: 60px auto 0;
-  padding: 40px 32px;
-  max-width: 720px;
-  width: 100%;
-  background: rgba(255,255,255,0.03);
-  border-radius: var(--radius);
-  border: 1px solid rgba(255,255,255,0.04);
-  box-shadow: 0 20px 60px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.02);
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  overflow: hidden;
+.contact-section {
+  max-width:600px;
+  margin:80px auto 40px;
+  padding:36px;
+  border-radius:22px;
+  background: rgba(7,20,41,0.6); /* subtle glass */
+  backdrop-filter: blur(12px) saturate(180%);
+  -webkit-backdrop-filter: blur(12px) saturate(180%);
+  border:1px solid rgba(255,255,255,0.08);
+  box-shadow:0 20px 60px rgba(0,0,0,0.4);
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  color:#fff;
+  position:relative;
 }
 
-.contact-card h2 {
+.contact-section h2 {
   font-size:28px;
   font-weight:800;
   margin-bottom:12px;
   background: linear-gradient(90deg,var(--accent1),var(--accent2));
   -webkit-background-clip:text;
   color:transparent;
+  text-align:center;
 }
 
-.contact-card p { margin-bottom:24px; color:var(--muted); font-size:14px; }
+.contact-section p {
+  margin-bottom:24px;
+  text-align:center;
+  color:var(--muted);
+}
 
-.contact-card .form-group {
-  position: relative;
-  margin-bottom:18px;
+.contact-section .form-group {
   width:100%;
+  position:relative;
+  margin-bottom:18px;
 }
 
-.contact-card input,
-.contact-card textarea {
+.contact-section input,
+.contact-section textarea {
   width:100%;
   padding:14px 12px;
-  border-radius:12px;
+  border-radius:14px;
   border:none;
   background: rgba(255,255,255,0.05);
   color:#fff;
@@ -312,68 +314,80 @@
   transition: all 0.2s ease;
 }
 
-.contact-card input:focus,
-.contact-card textarea:focus {
+.contact-section input:focus,
+.contact-section textarea:focus {
   background: rgba(0,207,255,0.08);
-  box-shadow: 0 0 8px var(--accent2);
+  box-shadow:0 0 12px var(--accent2);
 }
 
-.contact-card label {
-  position: absolute;
+.contact-section label {
+  position:absolute;
   left:12px;
   top:14px;
   color:var(--muted);
   font-size:13px;
   font-weight:600;
-  pointer-events: none;
+  pointer-events:none;
   transition: all 0.2s ease;
 }
 
-.contact-card input:focus + label,
-.contact-card input:not(:placeholder-shown) + label,
-.contact-card textarea:focus + label,
-.contact-card textarea:not(:placeholder-shown) + label {
-  top: -8px;
-  left: 10px;
+.contact-section input:focus + label,
+.contact-section input:not(:placeholder-shown) + label,
+.contact-section textarea:focus + label,
+.contact-section textarea:not(:placeholder-shown) + label {
+  top:-8px;
+  left:10px;
   font-size:12px;
-  color: var(--accent2);
-  background: var(--card);
+  color:var(--accent2);
+  background: rgba(7,20,41,0.6);
   padding:0 4px;
 }
 
-.contact-card .btn-primary {
+.contact-section .btn-primary {
   width:100%;
-  margin-top:6px;
   font-weight:700;
+  margin-top:6px;
 }
 
-.contact-card #formMsg { margin-top:10px; font-size:14px; font-weight:600; }
+.contact-section #formMsg {
+  margin-top:12px;
+  font-size:14px;
+  font-weight:600;
+  text-align:center;
+}
 
-/* Bubbles inside contact card */
-.contact-card .blob {
+/* subtle bubble */
+.contact-section::before {
+  content:'';
   position:absolute;
-  width:280px;
-  height:280px;
+  width:200px;
+  height:200px;
   border-radius:50%;
-  filter: blur(30px) saturate(120%);
-  background: conic-gradient(from 120deg at 50% 50%, var(--accent1), var(--accent2), #34d399);
-  mix-blend-mode: screen;
-  top:-50px; left:-50px;
-  animation: float 6s ease-in-out infinite, hue 12s linear infinite;
-  opacity:.7;
+  top:-60px;
+  right:-40px;
+  background: conic-gradient(var(--accent1),var(--accent2));
+  filter: blur(50px);
+  opacity:0.5;
   z-index:0;
 }
 
-.contact-card .bubble {position:absolute; z-index:1; width:14px; height:14px; border-radius:50%; opacity:.9; mix-blend-mode:screen;}
-.contact-card .b1{right:20%; bottom:10%; background:var(--accent1); animation: bob 5s ease-in-out infinite;}
-.contact-card .b2{left:15%; top:10%; background:var(--accent2); animation: bob 6s ease-in-out infinite;}
-
-@keyframes float{0%{transform: translateY(0) scale(1)}50%{transform: translateY(-12px) scale(1.04) rotate(6deg)}100%{transform: translateY(0) scale(1)}}
-@keyframes hue{0%{filter: hue-rotate(0deg)}100%{filter: hue-rotate(360deg)}}
-@keyframes bob{0%{transform: translateY(0)}50%{transform: translateY(-10px)}100%{transform: translateY(0)}}
+.contact-section::after {
+  content:'';
+  position:absolute;
+  width:120px;
+  height:120px;
+  border-radius:50%;
+  bottom:-40px;
+  left:-20px;
+  background: conic-gradient(var(--accent2),#34d399);
+  filter: blur(35px);
+  opacity:0.5;
+  z-index:0;
+}
 </style>
 
 <script>
+// Contact form logic
 const form = document.getElementById('contactForm');
 const formMsg = document.getElementById('formMsg');
 
@@ -382,35 +396,35 @@ form.addEventListener('submit', function(e){
   const name = form.name.value.trim();
   const email = form.email.value.trim();
   const message = form.message.value.trim();
-
   if(!name || !email || !message){
-    formMsg.style.color = '#FF6B6B';
-    formMsg.textContent = 'Please fill in all required fields.';
+    formMsg.style.color='#FF6B6B';
+    formMsg.textContent='Please fill in all fields.';
     return;
   }
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   if(!emailRegex.test(email)){
-    formMsg.style.color = '#FF6B6B';
-    formMsg.textContent = 'Please enter a valid email address.';
+    formMsg.style.color='#FF6B6B';
+    formMsg.textContent='Enter a valid email.';
     return;
   }
-  formMsg.style.color = '#34d399';
-  formMsg.textContent = 'Thanks! Your message has been sent.';
+  formMsg.style.color='#34d399';
+  formMsg.textContent='Message sent! Thanks.';
   form.reset();
 });
 
-// GSAP animation for contact card slide-in
-gsap.from(".contact-card", {
-  scrollTrigger: {
-    trigger: ".contact-card",
-    start: "top 85%"
+// GSAP fade-in
+gsap.from(".contact-section",{
+  scrollTrigger:{
+    trigger:".contact-section",
+    start:"top 90%"
   },
-  y: 40,
+  y:40,
   opacity:0,
   duration:1,
   ease:"power3.out"
 });
 </script>
+
 
 
 
