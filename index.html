@@ -240,7 +240,7 @@
 </main>
 
 
-<!-- Contact Section (Always Below Hero) -->
+<!-- Contact Section (Overlaps hero on desktop, below on mobile) -->
 <section class="contact-section" aria-labelledby="contact-title">
   <h2 id="contact-title">Get in Touch</h2>
   <p>Have questions or suggestions? Reach out and we'll get back to you promptly!</p>
@@ -264,10 +264,9 @@
 </section>
 
 <style>
-/* Contact Section Styling */
 .contact-section {
   max-width:600px;
-  margin:60px auto;
+  margin: -120px auto 60px; /* negative top margin overlaps hero on desktop */
   padding:36px;
   border-radius:22px;
   background: rgba(7,20,41,0.6);
@@ -280,6 +279,7 @@
   align-items:center;
   color:#fff;
   position:relative;
+  z-index:10;
 }
 
 .contact-section h2 {
@@ -388,10 +388,10 @@
   z-index:0;
 }
 
-/* Responsive adjustments for mobile */
+/* Mobile adjustments: remove overlap, place below hero */
 @media(max-width:600px){
   .contact-section {
-    margin:40px 16px;
+    margin:-20px auto 40px; /* smaller negative margin to sit just below hero */
     padding:24px;
   }
   .contact-section h2 { font-size:24px; }
