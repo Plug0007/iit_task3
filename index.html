@@ -8,17 +8,14 @@
   <meta name="keywords" content="Techfest, IIT Bombay, College Ambassador, CA Program, Techfest 2025, Campus Ambassador" />
   <meta name="author" content="Raelyaan" />
 
-  <!-- Open Graph (for social sharing) -->
+  <!-- Open Graph -->
   <meta property="og:title" content="Techfest IIT Bombay — College Ambassador Program" />
   <meta property="og:description" content="Represent Techfest at your college and unlock exclusive access, swag, and networking opportunities." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://techfest.org/ca" />
   <meta property="og:image" content="https://techfest.org/images/ca-preview.png" />
 
-  <!-- Favicon (replace with actual file later) -->
   <link rel="icon" href="/favicon.ico" />
-
-  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
@@ -27,9 +24,8 @@
     :root {
       --bg:#071026;
       --card:#071429;
-      --accent1:#6A0DAD; /* Techfest purple */
-      --accent2:#00CFFF; /* electric blue */
-      --glass: rgba(255,255,255,0.06);
+      --accent1:#6A0DAD;
+      --accent2:#00CFFF;
       --muted: rgba(255,255,255,0.78);
       --radius:18px;
     }
@@ -43,8 +39,9 @@
                   var(--bg);
       color:#fff;
       display:flex;
+      flex-direction:column;
       align-items:center;
-      justify-content:center;
+      justify-content:flex-start;
       padding:48px 20px;
     }
 
@@ -62,6 +59,7 @@
       grid-template-columns: 1fr 420px;
       gap:32px;
       align-items:center;
+      margin-bottom:80px;
     }
 
     .content h1{
@@ -72,7 +70,6 @@
       font-weight:800;
       background: linear-gradient(90deg,var(--accent1),var(--accent2));
       -webkit-background-clip:text;
-      background-clip:text;
       color:transparent;
     }
     .content p{
@@ -169,44 +166,25 @@
     .b2{left:18%; bottom:14%; background:var(--accent2); animation: bob 5.5s ease-in-out infinite;}
     .b3{right:10%; bottom:24%; background:#34d399; width:12px; height:12px; animation: bob 6.2s ease-in-out infinite;}
 
-    @keyframes float{
-      0%{transform: translateY(0) scale(1)}
-      50%{transform: translateY(-12px) scale(1.04) rotate(6deg)}
-      100%{transform: translateY(0) scale(1)}
-    }
-    @keyframes hue{
-      0%{filter: hue-rotate(0deg)}
-      100%{filter: hue-rotate(360deg)}
-    }
-    @keyframes bob{
-      0%{transform: translateY(0)}
-      50%{transform: translateY(-10px)}
-      100%{transform: translateY(0)}
-    }
+    @keyframes float{0%{transform: translateY(0) scale(1)}50%{transform: translateY(-12px) scale(1.04) rotate(6deg)}100%{transform: translateY(0) scale(1)}}
+    @keyframes hue{0%{filter: hue-rotate(0deg)}100%{filter: hue-rotate(360deg)}}
+    @keyframes bob{0%{transform: translateY(0)}50%{transform: translateY(-10px)}100%{transform: translateY(0)}}
 
-    @media (max-width:920px){
-      .hero-card{grid-template-columns:1fr; padding:34px; gap:20px}
-      .stage{height:300px}
-    }
-    @media (max-width:520px){
-      body{padding:28px 16px}
-      .hero-card{padding:20px}
-      .device{width:180px; height:260px}
-      .blob{width:260px;height:260px}
-    }
-    @media (prefers-reduced-motion:reduce){
-      .blob, .b1, .b2, .b3{animation:none}
-      .btn{transition:none}
-    }
+    @media (max-width:920px){.hero-card{grid-template-columns:1fr; padding:34px; gap:20px}.stage{height:300px}}
+    @media (max-width:520px){body{padding:28px 16px}.hero-card{padding:20px}.device{width:180px; height:260px}.blob{width:260px;height:260px}}
+    @media (prefers-reduced-motion:reduce){.blob, .b1, .b2, .b3{animation:none}.btn{transition:none}}
 
     /* small utility */
     .meta-row{display:flex;gap:10px;align-items:center;margin-bottom:12px}
     .badge{background:linear-gradient(90deg,var(--accent1),var(--accent2));padding:6px 10px;border-radius:999px;font-weight:700;font-size:13px;}
     .sub-meta{color:var(--muted);font-weight:600;font-size:13px}
     footer{position:fixed;left:0;bottom:12px;width:100%;text-align:center;color:rgba(255,255,255,0.45);font-size:13px}
+    /* scroll reveal utility */
+    .scroll-reveal{opacity:0;transform:translateY(40px);}
   </style>
 </head>
 <body>
+
   <main class="hero-card" role="main" aria-labelledby="hero-title">
     <section class="content">
       <div class="meta-row">
@@ -238,195 +216,79 @@
       </div>
     </aside>
   </main>
+
   <!-- Contact Section -->
-<section class="contact-card" aria-labelledby="contact-title">
-  <h2 id="contact-title">Get in Touch</h2>
-  <p style="color:var(--muted); margin-bottom:24px; max-width:600px;">
-    Have questions or suggestions? Reach out to us and we'll get back to you soon!
-  </p>
-  <form id="contactForm" novalidate>
-    <div class="form-group">
-      <label for="name">Name*</label>
-      <input type="text" id="name" name="name" required placeholder="Your full name">
-    </div>
-    <div class="form-group">
-      <label for="email">Email*</label>
-      <input type="email" id="email" name="email" required placeholder="you@example.com">
-    </div>
-    <div class="form-group">
-      <label for="message">Message*</label>
-      <textarea id="message" name="message" required placeholder="Your message" rows="4"></textarea>
-    </div>
-    <button type="submit" class="btn btn-primary">Send Message</button>
-    <p id="formMsg"></p>
-  </form>
-</section>
-
-<style>
-/* Contact card styling */
-.contact-card {
-  margin-top:60px;
-  background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
-  padding:40px 32px;
-  border-radius: var(--radius);
-  max-width:720px;
-  width:100%;
-  box-shadow: 0 12px 40px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.02);
-  border: 1px solid rgba(255,255,255,0.03);
-  display:flex;
-  flex-direction:column;
-  align-items:flex-start;
-}
-
-/* Gradient heading like hero */
-.contact-card h2 {
-  font-size:28px;
-  margin-bottom:12px;
-  font-weight:800;
-  background: linear-gradient(90deg,var(--accent1),var(--accent2));
-  -webkit-background-clip:text;
-  color:transparent;
-}
-
-/* Form styles */
-.contact-card form {
-  width:100%;
-  display:flex;
-  flex-direction:column;
-  gap:16px;
-}
-
-.contact-card .form-group {
-  display:flex;
-  flex-direction:column;
-}
-
-.contact-card label {
-  font-weight:600;
-  margin-bottom:6px;
-  color:var(--muted);
-  font-size:14px;
-}
-
-.contact-card input,
-.contact-card textarea {
-  padding:12px 14px;
-  border-radius:12px;
-  border:none;
-  background: rgba(255,255,255,0.05);
-  color:#fff;
-  font-size:14px;
-  transition: all 0.2s ease;
-}
-
-.contact-card input:focus,
-.contact-card textarea:focus {
-  outline:none;
-  background: rgba(0,207,255,0.08);
-  box-shadow: 0 0 8px var(--accent2);
-}
-
-/* Submit button full width */
-.contact-card .btn-primary {
-  width:100%;
-  text-align:center;
-  margin-top:8px;
-  font-weight:700;
-}
-
-/* Message feedback */
-#formMsg {
-  margin-top:10px;
-  font-size:14px;
-  font-weight:600;
-}
-</style>
-
-<script>
-// Contact form validation
-const form = document.getElementById('contactForm');
-const formMsg = document.getElementById('formMsg');
-
-form.addEventListener('submit', function(e){
-  e.preventDefault();
-  const name = form.name.value.trim();
-  const email = form.email.value.trim();
-  const message = form.message.value.trim();
-
-  if(!name || !email || !message){
-    formMsg.style.color = '#FF6B6B';
-    formMsg.textContent = 'Please fill in all required fields.';
-    return;
-  }
-
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  if(!emailRegex.test(email)){
-    formMsg.style.color = '#FF6B6B';
-    formMsg.textContent = 'Please enter a valid email address.';
-    return;
-  }
-
-  formMsg.style.color = '#34d399';
-  formMsg.textContent = 'Thanks! Your message has been sent.';
-  form.reset();
-});
-</script>
-
-
+  <section class="contact-card scroll-reveal" aria-labelledby="contact-title" style="background:var(--card); padding:32px; border-radius:var(--radius); max-width:700px; width:100%; box-shadow: 0 6px 20px rgba(0,0,0,0.5); margin-bottom:100px;">
+    <h2 id="contact-title" style="margin-bottom:16px; font-size:24px; background:linear-gradient(90deg,var(--accent1),var(--accent2)); -webkit-background-clip:text; color:transparent;">Get in Touch</h2>
+    <form id="contactForm" novalidate>
+      <div class="form-group">
+        <label for="name" style="display:block; margin-bottom:8px;">Name*</label>
+        <input type="text" id="name" name="name" required placeholder="Your full name" style="width:100%; padding:10px; border-radius:8px; border:none; margin-bottom:12px;">
+      </div>
+      <div class="form-group">
+        <label for="email" style="display:block; margin-bottom:8px;">Email*</label>
+        <input type="email" id="email" name="email" required placeholder="you@example.com" style="width:100%; padding:10px; border-radius:8px; border:none; margin-bottom:12px;">
+      </div>
+      <div class="form-group">
+        <label for="message" style="display:block; margin-bottom:8px;">Message*</label>
+        <textarea id="message" name="message" required placeholder="Your message" style="width:100%; padding:10px; border-radius:8px; border:none; margin-bottom:12px;" rows="4"></textarea>
+      </div>
+      <button type="submit" class="btn btn-primary" style="width:100%; text-align:center;">Send Message</button>
+      <p id="formMsg" style="margin-top:12px; font-size:14px; color:#34d399;"></p>
+    </form>
+  </section>
 
   <footer>
     Made with ❤️ by Raelyaan • For Techfest IIT Bombay CA Program
   </footer>
-    <!-- GSAP -->
+
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 
   <script>
-    // Animate the hero-card on load
-    gsap.from(".hero-card", {
-      duration: 1,
-      y: 40,
-      opacity: 0,
-      ease: "power3.out"
-    });
+    // Hero animations
+    gsap.from(".hero-card", {duration:1, y:40, opacity:0, ease:"power3.out"});
+    gsap.from(".content h1", {duration:1, x:-60, opacity:0, ease:"power3.out", delay:0.4});
+    gsap.from(".content p", {duration:1, x:-60, opacity:0, ease:"power3.out", delay:0.7});
+    gsap.to(".btn-primary", {scale:1.06, repeat:-1, yoyo:true, ease:"power1.inOut", duration:1.4, delay:1.2});
+    gsap.from(".stage", {scrollTrigger:{trigger:".stage", start:"top 80%"}, opacity:0, y:60, duration:1, ease:"power2.out"});
 
-    // Animate heading and paragraph
-    gsap.from(".content h1", {
-      duration: 1,
-      x: -60,
-      opacity: 0,
-      ease: "power3.out",
-      delay: 0.4
-    });
-
-    gsap.from(".content p", {
-      duration: 1,
-      x: -60,
-      opacity: 0,
-      ease: "power3.out",
-      delay: 0.7
-    });
-
-    // Buttons pulse animation
-    gsap.to(".btn-primary", {
-      scale: 1.06,
-      repeat: -1,
-      yoyo: true,
-      ease: "power1.inOut",
-      duration: 1.4,
-      delay: 1.2
-    });
-
-    // Scroll-triggered fade-in for stage section
-    gsap.from(".stage", {
+    // Contact section scroll reveal
+    gsap.from(".scroll-reveal", {
       scrollTrigger: {
-        trigger: ".stage",
-        start: "top 80%"
+        trigger: ".scroll-reveal",
+        start: "top 80%",
+        toggleActions: "play none none none"
       },
-      opacity: 0,
-      y: 60,
-      duration: 1,
-      ease: "power2.out"
+      opacity:0,
+      y:60,
+      duration:1.2,
+      ease:"power3.out",
+      stagger: 0.15
+    });
+
+    // Contact form validation
+    const form = document.getElementById('contactForm');
+    const formMsg = document.getElementById('formMsg');
+    form.addEventListener('submit', function(e){
+      e.preventDefault();
+      const name = form.name.value.trim();
+      const email = form.email.value.trim();
+      const message = form.message.value.trim();
+      if(!name || !email || !message){
+        formMsg.style.color = '#FF6B6B';
+        formMsg.textContent = 'Please fill in all required fields.';
+        return;
+      }
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if(!emailRegex.test(email)){
+        formMsg.style.color = '#FF6B6B';
+        formMsg.textContent = 'Please enter a valid email address.';
+        return;
+      }
+      formMsg.style.color = '#34d399';
+      formMsg.textContent = 'Thanks! Your message has been sent.';
+      form.reset();
     });
   </script>
 
