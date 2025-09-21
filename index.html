@@ -238,6 +238,60 @@
       </div>
     </aside>
   </main>
+    <!-- Contact Section -->
+  <section class="contact-card" aria-labelledby="contact-title" style="margin-top:60px; background:var(--card); padding:32px; border-radius:var(--radius); max-width:700px; width:100%; box-shadow: 0 6px 20px rgba(0,0,0,0.5);">
+    <h2 id="contact-title" style="margin-bottom:16px; font-size:24px; background:linear-gradient(90deg,var(--accent1),var(--accent2)); -webkit-background-clip:text; color:transparent;">Get in Touch</h2>
+    <form id="contactForm" novalidate>
+      <label for="name" style="display:block; margin-bottom:8px;">Name*</label>
+      <input type="text" id="name" name="name" required placeholder="Your full name" style="width:100%; padding:10px; border-radius:8px; border:none; margin-bottom:12px;">
+      
+      <label for="email" style="display:block; margin-bottom:8px;">Email*</label>
+      <input type="email" id="email" name="email" required placeholder="you@example.com" style="width:100%; padding:10px; border-radius:8px; border:none; margin-bottom:12px;">
+      
+      <label for="message" style="display:block; margin-bottom:8px;">Message*</label>
+      <textarea id="message" name="message" required placeholder="Your message" style="width:100%; padding:10px; border-radius:8px; border:none; margin-bottom:12px;" rows="4"></textarea>
+      
+      <button type="submit" class="btn btn-primary" style="width:100%; text-align:center;">Send Message</button>
+      <p id="formMsg" style="margin-top:12px; font-size:14px; color:#34d399;"></p>
+    </form>
+  </section>
+
+  <script>
+    // Contact form validation
+    const form = document.getElementById('contactForm');
+    const formMsg = document.getElementById('formMsg');
+
+    form.addEventListener('submit', function(e){
+      e.preventDefault();
+      const name = form.name.value.trim();
+      const email = form.email.value.trim();
+      const message = form.message.value.trim();
+      let valid = true;
+
+      if(name === '' || email === '' || message === ''){
+        valid = false;
+        formMsg.style.color = '#FF6B6B';
+        formMsg.textContent = 'Please fill in all required fields.';
+        return;
+      }
+
+      // Simple email regex
+      const emailRegex = /^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/;
+      if(!emailRegex.test(email)){
+        valid = false;
+        formMsg.style.color = '#FF6B6B';
+        formMsg.textContent = 'Please enter a valid email address.';
+        return;
+      }
+
+      if(valid){
+        formMsg.style.color = '#34d399';
+        formMsg.textContent = 'Thanks! Your message has been sent.';
+        form.reset();
+      }
+    });
+  </script>
+
 
   <footer>
     Made with ❤️ by Raelyaan • For Techfest IIT Bombay CA Program
