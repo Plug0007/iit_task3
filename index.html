@@ -238,59 +238,140 @@
       </div>
     </aside>
   </main>
-    <!-- Contact Section -->
-  <section class="contact-card" aria-labelledby="contact-title" style="margin-top:60px; background:var(--card); padding:32px; border-radius:var(--radius); max-width:700px; width:100%; box-shadow: 0 6px 20px rgba(0,0,0,0.5);">
-    <h2 id="contact-title" style="margin-bottom:16px; font-size:24px; background:linear-gradient(90deg,var(--accent1),var(--accent2)); -webkit-background-clip:text; color:transparent;">Get in Touch</h2>
-    <form id="contactForm" novalidate>
-      <label for="name" style="display:block; margin-bottom:8px;">Name*</label>
-      <input type="text" id="name" name="name" required placeholder="Your full name" style="width:100%; padding:10px; border-radius:8px; border:none; margin-bottom:12px;">
-      
-      <label for="email" style="display:block; margin-bottom:8px;">Email*</label>
-      <input type="email" id="email" name="email" required placeholder="you@example.com" style="width:100%; padding:10px; border-radius:8px; border:none; margin-bottom:12px;">
-      
-      <label for="message" style="display:block; margin-bottom:8px;">Message*</label>
-      <textarea id="message" name="message" required placeholder="Your message" style="width:100%; padding:10px; border-radius:8px; border:none; margin-bottom:12px;" rows="4"></textarea>
-      
-      <button type="submit" class="btn btn-primary" style="width:100%; text-align:center;">Send Message</button>
-      <p id="formMsg" style="margin-top:12px; font-size:14px; color:#34d399;"></p>
-    </form>
-  </section>
+  <!-- Contact Section -->
+<section class="contact-card" aria-labelledby="contact-title">
+  <h2 id="contact-title">Get in Touch</h2>
+  <p style="color:var(--muted); margin-bottom:24px; max-width:600px;">
+    Have questions or suggestions? Reach out to us and we'll get back to you soon!
+  </p>
+  <form id="contactForm" novalidate>
+    <div class="form-group">
+      <label for="name">Name*</label>
+      <input type="text" id="name" name="name" required placeholder="Your full name">
+    </div>
+    <div class="form-group">
+      <label for="email">Email*</label>
+      <input type="email" id="email" name="email" required placeholder="you@example.com">
+    </div>
+    <div class="form-group">
+      <label for="message">Message*</label>
+      <textarea id="message" name="message" required placeholder="Your message" rows="4"></textarea>
+    </div>
+    <button type="submit" class="btn btn-primary">Send Message</button>
+    <p id="formMsg"></p>
+  </form>
+</section>
 
-  <script>
-    // Contact form validation
-    const form = document.getElementById('contactForm');
-    const formMsg = document.getElementById('formMsg');
+<style>
+/* Contact card styling */
+.contact-card {
+  margin-top:60px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
+  padding:40px 32px;
+  border-radius: var(--radius);
+  max-width:720px;
+  width:100%;
+  box-shadow: 0 12px 40px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.02);
+  border: 1px solid rgba(255,255,255,0.03);
+  display:flex;
+  flex-direction:column;
+  align-items:flex-start;
+}
 
-    form.addEventListener('submit', function(e){
-      e.preventDefault();
-      const name = form.name.value.trim();
-      const email = form.email.value.trim();
-      const message = form.message.value.trim();
-      let valid = true;
+/* Gradient heading like hero */
+.contact-card h2 {
+  font-size:28px;
+  margin-bottom:12px;
+  font-weight:800;
+  background: linear-gradient(90deg,var(--accent1),var(--accent2));
+  -webkit-background-clip:text;
+  color:transparent;
+}
 
-      if(name === '' || email === '' || message === ''){
-        valid = false;
-        formMsg.style.color = '#FF6B6B';
-        formMsg.textContent = 'Please fill in all required fields.';
-        return;
-      }
+/* Form styles */
+.contact-card form {
+  width:100%;
+  display:flex;
+  flex-direction:column;
+  gap:16px;
+}
 
-      // Simple email regex
-      const emailRegex = /^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/;
-      if(!emailRegex.test(email)){
-        valid = false;
-        formMsg.style.color = '#FF6B6B';
-        formMsg.textContent = 'Please enter a valid email address.';
-        return;
-      }
+.contact-card .form-group {
+  display:flex;
+  flex-direction:column;
+}
 
-      if(valid){
-        formMsg.style.color = '#34d399';
-        formMsg.textContent = 'Thanks! Your message has been sent.';
-        form.reset();
-      }
-    });
-  </script>
+.contact-card label {
+  font-weight:600;
+  margin-bottom:6px;
+  color:var(--muted);
+  font-size:14px;
+}
+
+.contact-card input,
+.contact-card textarea {
+  padding:12px 14px;
+  border-radius:12px;
+  border:none;
+  background: rgba(255,255,255,0.05);
+  color:#fff;
+  font-size:14px;
+  transition: all 0.2s ease;
+}
+
+.contact-card input:focus,
+.contact-card textarea:focus {
+  outline:none;
+  background: rgba(0,207,255,0.08);
+  box-shadow: 0 0 8px var(--accent2);
+}
+
+/* Submit button full width */
+.contact-card .btn-primary {
+  width:100%;
+  text-align:center;
+  margin-top:8px;
+  font-weight:700;
+}
+
+/* Message feedback */
+#formMsg {
+  margin-top:10px;
+  font-size:14px;
+  font-weight:600;
+}
+</style>
+
+<script>
+// Contact form validation
+const form = document.getElementById('contactForm');
+const formMsg = document.getElementById('formMsg');
+
+form.addEventListener('submit', function(e){
+  e.preventDefault();
+  const name = form.name.value.trim();
+  const email = form.email.value.trim();
+  const message = form.message.value.trim();
+
+  if(!name || !email || !message){
+    formMsg.style.color = '#FF6B6B';
+    formMsg.textContent = 'Please fill in all required fields.';
+    return;
+  }
+
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if(!emailRegex.test(email)){
+    formMsg.style.color = '#FF6B6B';
+    formMsg.textContent = 'Please enter a valid email address.';
+    return;
+  }
+
+  formMsg.style.color = '#34d399';
+  formMsg.textContent = 'Thanks! Your message has been sent.';
+  form.reset();
+});
+</script>
+
 
 
   <footer>
